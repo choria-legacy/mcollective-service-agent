@@ -2,8 +2,6 @@ module MCollective
   module Util
     module Service
       class PuppetService<Base
-        require 'puppet'
-
         def stop
           if status == 'stopped'
             msg = 'Service is already stopped'
@@ -34,7 +32,8 @@ module MCollective
 
         private
         def service_provider
-          @svc ||= ::Puppet::Type.type(:service).new({:name => @service}.merge(@options)).provider
+          require 'puppet'
+          @svc ||= Puppet::Type.type(:service).new({:name => @service}.merge(@options)).provider
         end
 
         def properties

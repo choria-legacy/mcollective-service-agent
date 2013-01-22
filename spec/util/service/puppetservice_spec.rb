@@ -13,6 +13,7 @@ module MCollective
         let(:svc){mock}
 
         before do
+          PuppetService.any_instance.stubs(:require)
           service.stubs(:service_provider).returns(svc)
         end
 
@@ -77,6 +78,7 @@ module MCollective
         end
 
         describe '#service_provider' do
+          class Puppet;class Type;end;end
           it 'should create a puppet provider once' do
             service.unstub(:service_provider)
 
