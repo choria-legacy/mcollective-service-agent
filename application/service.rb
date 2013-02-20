@@ -43,12 +43,14 @@ END_OF_USAGE
     end
 
     def validate_configuration(configuration)
-      if Util.empty_filter?(options[:filter]) && !configuration[:yes]
-        handle_message(:print, 3)
+      unless configuration[:action] == 'status'
+        if Util.empty_filter?(options[:filter]) && !configuration[:yes]
+          handle_message(:print, 3)
 
-        STDOUT.flush
+          STDOUT.flush
 
-        exit(1) unless STDIN.gets.strip.match(/^(?:y|yes)$/i)
+          exit(1) unless STDIN.gets.strip.match(/^(?:y|yes)$/i)
+        end
       end
     end
 

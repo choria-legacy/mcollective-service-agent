@@ -30,9 +30,9 @@ module MCollective
 
       describe '#validate_configuration' do
         before do
-          MCollective::Util.expects(:empty_filter?).returns(true)
-          @app.expects(:options).returns({:filter =>{}})
-          @app.expects(:handle_message).with(:print, 3)
+          MCollective::Util.stubs(:empty_filter?).returns(true)
+          @app.stubs(:options).returns({:filter =>{}})
+          @app.stubs(:handle_message).with(:print, 3)
           STDOUT.stubs(:flush)
         end
 
@@ -46,6 +46,12 @@ module MCollective
           STDIN.stubs(:gets).returns('y')
           @app.expects(:exit).with(1).never
           @app.validate_configuration({})
+        end
+
+        it 'should not ask confirmation if filter is unset if action is status' do
+          @app.expects(:handle_message).with(:print,3).never
+          MCollective::Util.expects(:empty_filter?).never
+          @app.validate_configuration({:action => 'status'})
         end
       end
 
