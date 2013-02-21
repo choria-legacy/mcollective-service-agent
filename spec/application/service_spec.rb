@@ -67,6 +67,24 @@ module MCollective
           ARGV << 'rspec'
           @app.post_option_parser({})
         end
+
+        it 'should parse "action" "service" correctly' do
+          config = {}
+          ARGV << 'start'
+          ARGV << 'rspec'
+          @app.post_option_parser(config)
+          config[:action].should == 'start'
+          config[:service].should == 'rspec'
+        end
+
+        it 'should parser "service" "action" correctly' do
+          config = {}
+          ARGV << 'rspec'
+          ARGV << 'start'
+          @app.post_option_parser(config)
+          config[:action].should == 'start'
+          config[:service].should == 'rspec'
+        end
       end
 
       describe '#main' do

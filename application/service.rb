@@ -30,15 +30,17 @@ END_OF_USAGE
       if ARGV.size < 2
         handle_message(:raise, 1)
       else
-        service = ARGV.shift
-        action = ARGV.shift
+        valid_actions = ['start', 'stop', 'restart', 'status']
 
-        unless ['start', 'stop', 'restart', 'status'].include?(action)
+        if valid_actions.include?(ARGV[0])
+          configuration[:action] = ARGV.shift
+          configuration[:service] = ARGV.shift
+        elsif valid_actions.include?(ARGV[1])
+          configuration[:service] = ARGV.shift
+          configuration[:action] = ARGV.shift
+        else
           handle_message(:raise, 2)
         end
-
-        configuration[:service] = service
-        configuration[:action] = action
       end
     end
 
