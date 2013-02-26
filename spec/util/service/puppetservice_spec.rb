@@ -30,7 +30,7 @@ module MCollective
             service.stubs(:status).returns('stopped')
             service.expects(:properties).returns('stopped')
             svc.expects(:stop).never
-            service.stop.should == {:status => 'stopped', :msg => 'Service is already stopped'}
+            service.stop.should == {:status => 'stopped', :msg => "Could not stop 'rspec': Service is already stopped"}
           end
         end
 
@@ -46,7 +46,7 @@ module MCollective
             service.stubs(:status).returns('running')
             service.expects(:properties).returns('running')
             svc.expects(:start).never
-            service.start.should == {:status => 'running', :msg => 'Service is already running'}
+            service.start.should == {:status => 'running', :msg => "Could not start 'rspec': Service is already running"}
           end
         end
 

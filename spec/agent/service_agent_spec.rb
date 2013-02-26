@@ -52,6 +52,15 @@ module MCollective
           result.should be_successful
           result.should have_data_items(:status => 'running')
         end
+
+        it 'should set status to unknown on failure' do
+          Service.expects(:do_service_action).with('restart', 'rspec').raises("rspec error")
+          result = @agent.call(:restart, :service => 'rspec')
+          result.should be_unknown_error
+          # Confirm that status field has not been set. This means that status will be assigned
+          # to the default value defined in the ddl
+          result[:data][:status].should be_nil
+        end
       end
 
       describe '#status' do

@@ -2,7 +2,7 @@ metadata    :name        => "service",
             :description => "Start and stop system services",
             :author      => "R.I.Pienaar",
             :license     => "ASL 2.0",
-            :version     => "3.1.0",
+            :version     => "3.1.1",
             :url         => "http://projects.puppetlabs.com/projects/mcollective-plugins/wiki",
             :timeout     => 60
 
@@ -21,7 +21,8 @@ action "status", :description => "Gets the status of a service" do
 
     output :status,
            :description => "The status of the service",
-           :display_as  => "Service Status"
+           :display_as  => "Service Status",
+           :default     => "unknown"
 
     summarize do
       aggregate summary(:status)
@@ -42,7 +43,8 @@ end
 
         output :status,
                :description => "The status of the service after #{act.sub(/p$/, 'pp')}ing",
-               :display_as  => "Service Status"
+               :display_as  => "Service Status",
+               :default     => "unknown"
 
         summarize do
           aggregate summary(:status)

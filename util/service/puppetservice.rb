@@ -4,7 +4,7 @@ module MCollective
       class PuppetService<Base
         def stop
           if status == 'stopped'
-            msg = 'Service is already stopped'
+            msg = "Could not stop '%s': Service is already stopped" % @service
           else
             service_provider.stop
           end
@@ -14,7 +14,7 @@ module MCollective
 
         def start
           if status == 'running'
-            msg = 'Service is already running'
+            msg = "Could not start '%s': Service is already running" % @service
           else
             service_provider.start
           end

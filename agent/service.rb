@@ -3,41 +3,33 @@ module MCollective
     class Service<RPC::Agent
 
       action 'stop' do
-        begin
-          stop_result = Service.do_service_action('stop', request[:service])
+        stop_result = Service.do_service_action('stop', request[:service])
 
+        if stop_result[:msg]
           reply[:status] = stop_result[:status]
-          raise stop_result[:msg] if stop_result[:msg]
-        rescue => e
-          reply.fail! "Could not stop service '%s': %s" % [request[:service], e.to_s]
+          reply.fail! stop_result[:msg]
+        else
+          reply[:status] = stop_result[:status]
         end
       end
 
       action 'start' do
-        begin
-          start_result = Service.do_service_action('start', request[:service])
+        start_result = Service.do_service_action('start', request[:service])
 
+        if start_result[:msg]
           reply[:status] = start_result[:status]
-          raise start_result[:msg] if start_result[:msg]
-        rescue => e
-          reply.fail! "Could not start service '%s': %s" % [request[:service], e.to_s]
+          reply.fail! start_result[:msg]
+        else
+          reply[:status] = start_result[:status]
         end
       end
 
       action 'restart' do
-        begin
-          reply[:status] = Service.do_service_action('restart', request[:service])
-        rescue => e
-          reply.fail! "Could not restart service '%s': %s" % [request[:service], e.to_s]
-        end
+        reply[:status] = Service.do_service_action('restart', request[:service])
       end
 
       action 'status' do
-        begin
-          reply[:status] = Service.do_service_action('status', request[:service])
-        rescue => e
-          reply.fail! "Could not determine status of service '%s': %s" % [request[:service], e.to_s]
-        end
+        reply[:status] = Service.do_service_action('status', request[:service])
       end
 
       # Loads service provider from config, calls the provider specific action
