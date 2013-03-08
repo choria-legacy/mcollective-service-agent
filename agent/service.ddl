@@ -2,7 +2,7 @@ metadata    :name        => "service",
             :description => "Start and stop system services",
             :author      => "R.I.Pienaar",
             :license     => "ASL 2.0",
-            :version     => "3.1.1",
+            :version     => "3.1.2",
             :url         => "http://projects.puppetlabs.com/projects/mcollective-plugins/wiki",
             :timeout     => 60
 

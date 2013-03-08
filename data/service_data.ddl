@@ -1,5 +1,5 @@
 metadata :name => "service",
-         :description => "Checks the status of a service service",
+         :description => "Checks the status of a service",
          :author => "Pieter Loubser <pieter.loubser@puppetlabs.com>",
          :license => "ASL 2.0",
          :version => "2.0.1",
