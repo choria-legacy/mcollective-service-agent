@@ -1,0 +1,22 @@
+Source: mcollective-service
+Homepage: https://github.com/puppetlabs/mcollective-service-agent
+Section: utils
+Priority: extra
+Maintainer: Puppet Labs
+Build-Depends: cdbs, debhelper
+Standards-Version: 3.8.0
+
+Package: mcollective-service-agent
+Architecture: all
+Depends: mcollective-service-common(= ${binary:Version})
+Description: Start and stop system services
+
+Package: mcollective-service-client
+Architecture: all
+Depends: mcollective-service-common(= ${binary:Version})
+Description: Start and stop system services
+
+Package: mcollective-service-common
+Architecture: all
+Depends: mcollective-common(>= 2.2.1)
+Description: Start and stop system services
