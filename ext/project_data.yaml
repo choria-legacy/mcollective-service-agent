@@ -1,0 +1,19 @@
+---
+project: 'mcollective-service'
+author: 'Puppet Labs'
+email: 'info@puppetlabs.com'
+homepage: 'https://github.com/puppetlabs/mcollective-service-agent'
+summary: 'Start and stop system services'
+description: 'Start and stop system services'
+# files and gem_files are space separated lists
+files:
+  - agent
+  - application
+  - data
+  - ext
+  - util
+  - validator
+# List of packaging related templates to evaluate before the tarball is packed
+templates:
+  - "ext/redhat/mcollective-service.spec.erb"
+  - "ext/debian/changelog.erb"
