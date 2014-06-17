@@ -67,29 +67,31 @@ END_OF_USAGE
       service = rpcclient('service')
       service_result = service.send(configuration[:action], :service => configuration[:service])
 
-      sender_width = service_result.map{|s| s[:sender]}.map{|s| s.length}.max + 3
-      pattern = "%%%ds: %%s" % sender_width
+      if !service_result.empty?
+        sender_width = service_result.map{|s| s[:sender]}.map{|s| s.length}.max + 3
+        pattern = "%%%ds: %%s" % sender_width
 
-      service_result.each do |result|
-        if result[:statuscode] == 0
-          if service.verbose
-            puts pattern % [result[:sender], result[:data][:status]]
-          else
-            case configuration[:action]
-            when 'start', 'restart'
-              puts(pattern % [result[:sender], result[:data][:status]]) unless result[:data][:status] == 'running'
-            when 'stop'
-              puts(pattern % [result[:sender], result[:data][:status]]) unless result[:data][:status] == 'stopped'
-            when 'status'
-              puts(pattern % [result[:sender], result[:data][:status]])
+        service_result.each do |result|
+          if result[:statuscode] == 0
+            if service.verbose
+              puts pattern % [result[:sender], result[:data][:status]]
+            else
+              case configuration[:action]
+              when 'start', 'restart'
+                puts(pattern % [result[:sender], result[:data][:status]]) unless result[:data][:status] == 'running'
+              when 'stop'
+                puts(pattern % [result[:sender], result[:data][:status]]) unless result[:data][:status] == 'stopped'
+              when 'status'
+                puts(pattern % [result[:sender], result[:data][:status]])
+              end
             end
+          else
+            puts(pattern % [result[:sender], result[:statusmsg]])
           end
-        else
-          puts(pattern % [result[:sender], result[:statusmsg]])
         end
-      end
 
-      puts
+        puts
+      end
 
       printrpcstats :summarize => true, :caption => "%s Service results" % configuration[:action]
       halt(service.stats)
