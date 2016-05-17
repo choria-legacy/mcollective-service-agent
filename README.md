@@ -103,3 +103,10 @@ you can configure it in the config file using:
 ```
 plugin.service.provider = puppet
 ```
+
+## Maintenance
+
+Maintainers: Alessandro Parisi <alessandro@puppet.com>, Michael Smith
+<michael.smith@puppet.com>, Michal Ruzicka <michal.ruzicka@puppet.com>.
+
+Tickets: File bug tickets at https://tickets.puppet.com/browse/MCOP.
