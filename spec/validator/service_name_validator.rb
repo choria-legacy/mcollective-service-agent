@@ -13,6 +13,8 @@ module MCollective
           Service_nameValidator.validate('rspec-service')
           Service_nameValidator.validate('rspec-service-1')
           Service_nameValidator.validate('rspec.service')
+          Service_nameValidator.validate('rspec@service')
+          Service_nameValidator.validate('rspec:service')
         end
         it 'should fail on a invalid service name' do
           expect{
