@@ -90,6 +90,10 @@ If however you are not a Puppet user or simply want to implement some new
 method of service management you can do so by providing your own backend
 provider for this agent.
 
+A `service` provider that uses the `service` system command has also been
+contributed; it can be configured to work with any command that responds to
+`mycommand myservice start/stop/restart/status`.
+
 The logic for the Puppet version of this agent is implemented in
 Util::Service::PuppetService, you can create a custom service implementation
 that overrides #start, #stop, #restart, and #status.
