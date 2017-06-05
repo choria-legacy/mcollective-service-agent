@@ -2,6 +2,12 @@
 
 Change history for mcollective-service.
 
+## 3.1.5
+
+Released 2017-06-05
+
+* Support : as a valid character in service_name (MCOP-594)
+
 ## 3.1.4
 
 Released 2017-04-06
