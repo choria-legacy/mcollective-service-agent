@@ -3,7 +3,7 @@ metadata    :name        => "service",
             :author      => "R.I.Pienaar",
             :license     => "ASL 2.0",
             :version     => "3.1.5",
-            :url         => "http://projects.puppetlabs.com/projects/mcollective-plugins/wiki",
+            :url         => "https://github.com/puppetlabs/mcollective-service-agent",
             :timeout     => 60
 
 requires :mcollective => "2.2.1"
