@@ -2,6 +2,13 @@
 
 Change history for mcollective-service.
 
+## 3.2.0
+
+Released 2017-09-19
+
+* Add a simple service provider that works with any command that responds
+  to `:servicecmd myservice start/stop/restart/status`.
+
 ## 3.1.5
 
 Released 2017-06-05
