@@ -1,5 +1,13 @@
 # Service Agent
 
+## Deprecation Notice
+
+This repository holds legacy code related to The Marionette Collective project.  That project has been deprecated by Puppet Inc and the code donated to the Choria Project.
+
+Please review the [Choria Project Website](https://choria.io) and specifically the [MCollective Deprecation Notice](https://choria.io/mcollective) for further information and details about the future of the MCollective project.
+
+## Overview
+
 The service agent that lets you stop, start, restart and query the statuses of services on your operating system.
 
 The service agent does not do any management of services itself. Instead it
@@ -107,10 +115,3 @@ you can configure it in the config file using:
 ```
 plugin.service.provider = puppet
 ```
-
-## Maintenance
-
-Maintainers: Alessandro Parisi <alessandro@puppet.com>, Michael Smith
-<michael.smith@puppet.com>, Michal Ruzicka <michal.ruzicka@puppet.com>.
-
-Tickets: File bug tickets at https://tickets.puppet.com/browse/MCOP.
